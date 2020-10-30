@@ -1,0 +1,6 @@
+export const cartType = {
+    TOGGLE_CART_ICON:"TOGGLE_CART_ICON",
+    ADD_ITEM:"ADD_ITEM",
+    CLEAR_ITEMS:"CLEAR_ITEMS",
+    REMOVE_ITEM:"REMOVE_ITEM"
+}

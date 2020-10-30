@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import CartIcon from '../cart-icon/cart-icon.component';
 import { auth } from '../../firebase/firebase.utils';
-
 import { ReactComponent as Logo } from '../../assets/crown.svg';
-
+import { selectHidden } from '../../redux/cart/cart.selectors'
+import { selectCurrentUser } from '../../redux/user/user.selectors'
+import { createStructuredSelector } from 'reselect';
 import './header.styles.scss';
+import CartDropDown from '../cart-dropdown/cart-dropdown.component';
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser,hidden }) => (
   <div className='header'>
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
@@ -28,8 +31,27 @@ const Header = ({ currentUser }) => (
           SIGN IN
         </Link>
       )}
-    </div>
+    <CartIcon/>  
+    </div> 
+    {
+      hidden?
+      null:
+      <CartDropDown/>
+    }
+    
   </div>
 );
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+ currentUser: selectCurrentUser,
+  hidden: selectHidden
+})
+// this kind of distructuring , the original:
+//const mapStateToProps = state =>({
+//  currentUser:state.user.currentUser,
+//  hidden:state.toggle.hidden
+//})
+export default connect(mapStateToProps,null)(Header) ;
+//connect makes the function (mapStateToProps) make an object that have a property 
+// that will be passed as props and the value of state is the root reducer
+// which have the object which has the property user which is connected to the userReducer 
