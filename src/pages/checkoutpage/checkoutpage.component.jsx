@@ -31,7 +31,7 @@ const CheckOutPage = ({total,cartItems}) =>(
        
        <div className='total'>${total}</div>
        <div className='test'>Please use the following test credit card for payments<br/>
-       4242424242424242-Exp:01/20-CW:123
+       4242424242424242-Exp:01/21-CW:123
        </div>
        <PaymentButton price={total}/>
    </div>
