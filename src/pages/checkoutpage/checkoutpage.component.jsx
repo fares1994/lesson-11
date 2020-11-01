@@ -3,6 +3,7 @@ import './checkout.styles.scss';
 import { connect } from 'react-redux';
 import { selectCartItems, selectTotal } from '../../redux/cart/cart.selectors';
 import { createStructuredSelector } from 'reselect';
+import PaymentButton from '../../components/payment-button/payment-button.component';
 import CheckOutItem, { } from '../../components/checkout-item/checkout-item.component';
 const CheckOutPage = ({total,cartItems}) =>(
    <div className='checkout-page'>
@@ -29,6 +30,10 @@ const CheckOutPage = ({total,cartItems}) =>(
        }
        
        <div className='total'>${total}</div>
+       <div className='test'>Please use the following test credit card for payments<br/>
+       4242424242424242-Exp:01/20-CW:123
+       </div>
+       <PaymentButton price={total}/>
    </div>
 )
 const mapStateToProps = createStructuredSelector({
