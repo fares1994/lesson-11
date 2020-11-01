@@ -3,7 +3,10 @@ import { createStore,applyMiddleware } from 'redux';
 import combineReducers from './root-reducer';
 
 import { persistStore } from 'redux-persist';
-const middlewars = [logger];
+const middlewars = [];
+if(process.env.NODE_ENV ==='development'){
+    middlewars.push(logger)
+}
 export const store = createStore (combineReducers,applyMiddleware(...middlewars))
 export const persistor = persistStore(store)
 export default { store,persistor }
